@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+      text-align: center;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="radio"] {
+      margin: 0 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4c53af;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a0a0;
+    }
+
+    .delete-button {
+      background-color: #ff5555;
+    }
+
+    .delete-button:hover {
+      background-color: #dd4444;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="color: blue;">Student Details Submission Form</h1>
+
+  <form id="studentForm">
+    <label for="academicYear">Academic Year:</label>
+    <input type="text" id="academicYear" required>
+
+    <label for="studentGrade">Student Grade:</label>
+    <input type="text" id="studentGrade" required>
+
+    <label for="fullName">Full Name:</label>
+    <input type="text" id="fullName" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" required>
+
+    <label>Gender:</label>
+    <label for="male"><input type="radio" id="male" name="gender" value="Male" required> Male</label>
+    <label for="female"><input type="radio" id="female" name="gender" value="Female" required> Female</label>
+
+    <label for="school">School:</label>
+    <input type="text" id="school" required>
+
+    <label for="permanentAddress">Permanent Address:</label>
+    <input type="text" id="permanentAddress" required>
+
+    <label for="telephoneNumber">Telephone Number:</label>
+    <input type="text" id="telephoneNumber" pattern="\d{10}" title="Please enter a 10-digit number starting with 0" required>
+
+    <button type="button" onclick="submitForm()">Submit</button>
+  </form>
+
+  <script>
+    function validatePhoneNumber(number) {
+      // Check if the phone number has 10 digits and starts with 0
+      return /^\d{10}$/.test(number) && number.charAt(0) === '0';
+    }
+
+    function submitForm() {
+      const academicYear = document.getElementById('academicYear').value;
+      const studentGrade = document.getElementById('studentGrade').value;
+      const fullName = document.getElementById('fullName').value;
+      const age = document.getElementById('age').value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const school = document.getElementById('school').value;
+      const permanentAddress = document.getElementById('permanentAddress').value;
+      const telephoneNumber = document.getElementById('telephoneNumber').value;
+
+      // Validate telephone number
+      if (!validatePhoneNumber(telephoneNumber)) {
+        alert('Invalid telephone number. Please enter a 10-digit number starting with 0.');
+        return;
+      }
+
+      // Additional validation can be added for other fields if needed
+
+      // Display confirmation message
+      const confirmation = confirm('Are you sure you want to submit the form?');
+
+      if (confirmation) {
+        // Perform any additional actions here (e.g., sending data to a server)
+        alert('Form submitted successfully!');
+        // You can also reset the form if needed
+        document.getElementById('studentForm').reset();
+      }
+    }
+  </script>
+
+</body>
+</html>
